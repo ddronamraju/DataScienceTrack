@@ -1,0 +1,12 @@
+HR Analytics
+Clustering employees that are leaving. Clean dataset for Exploratory data analysis. Will be able to build a model to predict which employee will leave next.I've already started the EDA for this project
+
+
+Instacart Market Basket Analysis
+Clean dataset for EDA and building a predictive model
+https://www.kaggle.com/c/instacart-market-basket-analysis
+
+Predict if loan will be approved or not
+This is a classification problem
+https://datahack.analyticsvidhya.com/contest/practice-problem-loan-prediction-iii/
+
