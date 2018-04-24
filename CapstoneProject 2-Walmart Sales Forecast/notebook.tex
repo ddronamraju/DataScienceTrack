@@ -1,0 +1,1296 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Walmart Store Sales Forecasting v2}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{Introduction}\label{introduction}
+
+This dataset contains historical sales data including holiday promotion
+events. The goal of this project is to forecast sales for the stores.
+The data is available for download here:
+https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib} \PY{k}{as} \PY{n+nn}{matplot}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{font\PYZus{}manager} \PY{k}{as} \PY{n}{fm}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats}
+        \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{sm}
+        \PY{k+kn}{import} \PY{n+nn}{pprint}
+        \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{precision\PYZus{}recall\PYZus{}fscore\PYZus{}support}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{precision\PYZus{}score}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{recall\PYZus{}score}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \subsubsection{Data Wrangling}\label{data-wrangling}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}181}]:} \PY{n}{features} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{divya}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Documents}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{git}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{DataScienceTrack}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{CapstoneProject 2\PYZhy{}Walmart Sales Forecast}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{features.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{stores} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{divya}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Documents}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{git}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{DataScienceTrack}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{CapstoneProject 2\PYZhy{}Walmart Sales Forecast}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{stores.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{test} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{divya}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Documents}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{git}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{DataScienceTrack}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{CapstoneProject 2\PYZhy{}Walmart Sales Forecast}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{test.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{train} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{divya}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Documents}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{git}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{DataScienceTrack}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{CapstoneProject 2\PYZhy{}Walmart Sales Forecast}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{train.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{parse\PYZus{}dates}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}sample\PYZus{}sub = pd.read\PYZus{}csv(\PYZsq{}C:\PYZbs{}\PYZbs{}Users\PYZbs{}\PYZbs{}divya\PYZbs{}\PYZbs{}Documents\PYZbs{}\PYZbs{}git\PYZbs{}\PYZbs{}DataScienceTrack\PYZbs{}\PYZbs{}CapstoneProject 2\PYZhy{}Walmart Sales Forecast\PYZbs{}\PYZbs{}sample\PYZus{}submission.csv\PYZsq{},parse\PYZus{}dates=[\PYZsq{}Date\PYZsq{}])}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}117}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{features}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{stores}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}print(sample\PYZus{}sub.head())}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   Store       Date  Temperature  Fuel\_Price  MarkDown1  MarkDown2  MarkDown3  \textbackslash{}
+0      1 2010-02-05        42.31       2.572        NaN        NaN        NaN   
+1      1 2010-02-12        38.51       2.548        NaN        NaN        NaN   
+2      1 2010-02-19        39.93       2.514        NaN        NaN        NaN   
+3      1 2010-02-26        46.63       2.561        NaN        NaN        NaN   
+4      1 2010-03-05        46.50       2.625        NaN        NaN        NaN   
+
+   MarkDown4  MarkDown5         CPI  Unemployment  IsHoliday  
+0        NaN        NaN  211.096358         8.106      False  
+1        NaN        NaN  211.242170         8.106       True  
+2        NaN        NaN  211.289143         8.106      False  
+3        NaN        NaN  211.319643         8.106      False  
+4        NaN        NaN  211.350143         8.106      False  
+   Store Type    Size
+0      1    A  151315
+1      2    A  202307
+2      3    B   37392
+3      4    A  205863
+4      5    B   34875
+   Store  Dept       Date  Weekly\_Sales  IsHoliday  Temperature  Fuel\_Price  \textbackslash{}
+0     26    92 2011-08-26      87235.57      False        61.10       3.796   
+1     34    22 2011-03-25       5945.97      False        53.11       3.480   
+2     21    28 2010-12-03       1219.89      False        50.43       2.708   
+3      8     9 2010-09-17      11972.71      False        75.32       2.582   
+4     19    55 2012-05-18       8271.82      False        58.81       4.029   
+
+   MarkDown1  MarkDown2  MarkDown3  MarkDown4  MarkDown5         CPI  \textbackslash{}
+0        NaN        NaN        NaN        NaN        NaN  136.213613   
+1        NaN        NaN        NaN        NaN        NaN  128.616064   
+2        NaN        NaN        NaN        NaN        NaN  211.265543   
+3        NaN        NaN        NaN        NaN        NaN  214.878556   
+4   12613.98        NaN       11.5    1705.28    3600.79  138.106581   
+
+   Unemployment Type    Size  
+0         7.767    A  152513  
+1        10.398    A  158114  
+2         8.163    B  140167  
+3         6.315    A  155078  
+4         8.150    A  203819  
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}118}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{stores}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 45 entries, 0 to 44
+Data columns (total 3 columns):
+Store    45 non-null int64
+Type     45 non-null object
+Size     45 non-null int64
+dtypes: int64(2), object(1)
+memory usage: 1.1+ KB
+None
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}119}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 282451 entries, 0 to 282450
+Data columns (total 16 columns):
+Store           282451 non-null int64
+Dept            282451 non-null int64
+Date            282451 non-null datetime64[ns]
+Weekly\_Sales    282451 non-null float64
+IsHoliday       282451 non-null bool
+Temperature     282451 non-null float64
+Fuel\_Price      282451 non-null float64
+MarkDown1       100520 non-null float64
+MarkDown2       74232 non-null float64
+MarkDown3       91521 non-null float64
+MarkDown4       90031 non-null float64
+MarkDown5       101029 non-null float64
+CPI             282451 non-null float64
+Unemployment    282451 non-null float64
+Type            282451 non-null object
+Size            282451 non-null int64
+dtypes: bool(1), datetime64[ns](1), float64(10), int64(3), object(1)
+memory usage: 32.6+ MB
+None
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}120}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{features}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 8190 entries, 0 to 8189
+Data columns (total 12 columns):
+Store           8190 non-null int64
+Date            8190 non-null datetime64[ns]
+Temperature     8190 non-null float64
+Fuel\_Price      8190 non-null float64
+MarkDown1       4032 non-null float64
+MarkDown2       2921 non-null float64
+MarkDown3       3613 non-null float64
+MarkDown4       3464 non-null float64
+MarkDown5       4050 non-null float64
+CPI             7605 non-null float64
+Unemployment    7605 non-null float64
+IsHoliday       8190 non-null bool
+dtypes: bool(1), datetime64[ns](1), float64(9), int64(1)
+memory usage: 711.9 KB
+None
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}185}]:} \PY{n}{train}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}185}]:} Timestamp('2010-02-05 00:00:00')
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}121}]:} \PY{c+c1}{\PYZsh{} Let\PYZsq{}s check if there is any missing weeks in the data}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}124}]:} \PY{c+c1}{\PYZsh{}Let creare a series}
+          \PY{n}{weeknum\PYZus{}features}\PY{o}{=}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{nunique}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{weeknum}\PY{p}{)}
+          \PY{n}{weeks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{period\PYZus{}range}\PY{p}{(}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{freq}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{weeks}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+182
+PeriodIndex(['2010-02-01/2010-02-07', '2010-02-08/2010-02-14',
+             '2010-02-15/2010-02-21', '2010-02-22/2010-02-28',
+             '2010-03-01/2010-03-07', '2010-03-08/2010-03-14',
+             '2010-03-15/2010-03-21', '2010-03-22/2010-03-28',
+             '2010-03-29/2010-04-04', '2010-04-05/2010-04-11'],
+            dtype='period[W-SUN]', freq='W-SUN')
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}125}]:} \PY{n}{weeks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{freq}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7D}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{weeks}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+DatetimeIndex(['2010-02-05', '2010-02-12', '2010-02-19', '2010-02-26',
+               '2010-03-05', '2010-03-12', '2010-03-19', '2010-03-26',
+               '2010-04-02', '2010-04-09'],
+              dtype='datetime64[ns]', freq='7D')
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}126}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{weeks}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+182
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}127}]:} \PY{n}{weeknum\PYZus{}features}\PY{o}{=}\PY{n}{features}\PY{o}{.}\PY{n}{Date}\PY{o}{.}\PY{n}{nunique}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{weeknum\PYZus{}features}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+182
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{c+c1}{\PYZsh{}Let\PYZsq{}s see if all departments exist across all stores}
+          \PY{n}{train}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Store}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{Dept}\PY{o}{.}\PY{n}{nunique}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}128}]:} Store
+          1     77
+          2     78
+          3     70
+          4     77
+          5     72
+          6     77
+          7     76
+          8     76
+          9     73
+          10    77
+          Name: Dept, dtype: int64
+\end{Verbatim}
+            
+    Looks like all departments don't exist across all stores. Now let's see
+if te department level sales for a given store has any missing values.
+If there are 182 weeks in the data each store-department combination
+should also have 182 values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}129}]:} \PY{n}{dept\PYZus{}week\PYZus{}num}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Store}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{Weekly\PYZus{}Sales}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+          \PY{n}{dept\PYZus{}week\PYZus{}num}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}129}]:} Store  Dept
+          1      1        91
+                 2        98
+                 3        95
+                 4        95
+                 5       100
+                 6       105
+                 7        89
+                 8        90
+                 9        97
+                 10       97
+          Name: Weekly\_Sales, dtype: int64
+\end{Verbatim}
+            
+    Seems like the weekly data for every department is not available. Let's
+look at the weekly distribution of data from Store 1, department 1
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Store}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Dept}\PY{o}{==}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Store}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weekly\PYZus{}Sales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+        Store  Dept       Date  Weekly\_Sales
+88841       1     2 2010-02-19      47928.89
+255778      1     2 2010-02-26      44292.87
+57051       1     2 2010-03-05      48397.98
+271033      1     2 2010-03-12      43751.94
+82875       1     2 2010-03-19      43615.49
+43045       1     2 2010-04-02      47450.50
+224041      1     2 2010-04-09      46549.73
+228002      1     2 2010-04-16      45025.02
+14024       1     2 2010-04-23      44418.11
+46405       1     2 2010-05-07      47903.01
+239562      1     2 2010-05-14      43675.61
+35440       1     2 2010-05-21      44319.15
+278306      1     2 2010-05-28      44619.52
+78648       1     2 2010-06-04      48754.47
+165579      1     2 2010-06-18      44428.71
+231012      1     2 2010-06-25      45299.92
+17661       1     2 2010-07-16      44339.20
+32777       1     2 2010-07-30      45833.77
+233225      1     2 2010-08-06      50031.73
+95627       1     2 2010-08-20      49754.17
+
+    \end{Verbatim}
+
+    Looking at this we can tell that the department sales data is missing
+for some departments and all departments are not available across all
+stores. In order to tackle missing department sales data, we can use a
+fill method to resample the data.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}326}]:} \PY{n}{store1}\PY{o}{=}\PY{n}{train}\PY{p}{[}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Store}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+          \PY{n}{store1\PYZus{}up}\PY{o}{=}\PY{n}{store1}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Store}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W\PYZhy{}FRI}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{fill\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ffill}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{store1\PYZus{}up}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                       Store  Dept  Weekly\_Sales  IsHoliday  Temperature  \textbackslash{}
+Store Dept Date                                                            
+1     1    2010-02-12      1     1      46039.49       True        38.51   
+           2010-02-19      1     1      46039.49       True        38.51   
+           2010-02-26      1     1      19403.54      False        46.63   
+           2010-03-05      1     1      21827.90      False        46.50   
+           2010-03-12      1     1      21043.39      False        57.79   
+      2    2010-02-19      1     2      47928.89      False        39.93   
+           2010-02-26      1     2      44292.87      False        46.63   
+           2010-03-05      1     2      48397.98      False        46.50   
+           2010-03-12      1     2      43751.94      False        57.79   
+           2010-03-19      1     2      43615.49      False        54.58   
+      3    2010-02-12      1     3      10887.84       True        38.51   
+           2010-02-19      1     3      10887.84       True        38.51   
+           2010-02-26      1     3      10887.84       True        38.51   
+           2010-03-05      1     3      12275.58      False        46.50   
+           2010-03-12      1     3      10123.45      False        57.79   
+      4    2010-02-05      1     4      39954.04      False        42.31   
+           2010-02-12      1     4      39954.04      False        42.31   
+           2010-02-19      1     4      36826.95      False        39.93   
+           2010-02-26      1     4      34660.16      False        46.63   
+           2010-03-05      1     4      38086.19      False        46.50   
+      5    2010-02-05      1     5      32229.38      False        42.31   
+           2010-02-12      1     5      29620.81       True        38.51   
+           2010-02-19      1     5      26468.27      False        39.93   
+           2010-02-26      1     5      24101.89      False        46.63   
+           2010-03-05      1     5      23082.14      False        46.50   
+      6    2010-02-12      1     6       9135.00       True        38.51   
+           2010-02-19      1     6       6060.26      False        39.93   
+           2010-02-26      1     6       5244.56      False        46.63   
+           2010-03-05      1     6       4221.25      False        46.50   
+           2010-03-12      1     6       4221.25      False        46.50   
+{\ldots}                      {\ldots}   {\ldots}           {\ldots}        {\ldots}          {\ldots}   
+      94   2010-02-05      1    94      56655.39      False        42.31   
+           2010-02-12      1    94      56655.39      False        42.31   
+           2010-02-19      1    94      56655.39      False        42.31   
+           2010-02-26      1    94      56655.39      False        42.31   
+           2010-03-05      1    94      59201.37      False        46.50   
+      95   2010-03-05      1    95     112807.75      False        46.50   
+           2010-03-12      1    95     112048.41      False        57.79   
+           2010-03-19      1    95     117716.13      False        54.58   
+           2010-03-26      1    95     113117.35      False        51.45   
+           2010-04-02      1    95     113117.35      False        51.45   
+      96   2010-07-09      1    96      33614.93      False        80.48   
+           2010-07-16      1    96      33614.93      False        80.48   
+           2010-07-23      1    96      32929.90      False        83.36   
+           2010-07-30      1    96      31662.07      False        81.84   
+           2010-08-06      1    96      31662.07      False        81.84   
+      97   2010-02-05      1    97      32153.04      False        42.31   
+           2010-02-12      1    97      32153.04      False        42.31   
+           2010-02-19      1    97      32153.04      False        42.31   
+           2010-02-26      1    97      32153.04      False        42.31   
+           2010-03-05      1    97      31576.47      False        46.50   
+      98   2010-02-12      1    98      16309.73       True        38.51   
+           2010-02-19      1    98      12087.95      False        39.93   
+           2010-02-26      1    98      10871.74      False        46.63   
+           2010-03-05      1    98      10903.65      False        46.50   
+           2010-03-12      1    98      10819.46      False        57.79   
+      99   2010-07-02      1    99          0.01      False        80.91   
+           2010-07-09      1    99          0.01      False        80.91   
+           2010-07-16      1    99          0.01      False        80.91   
+           2010-07-23      1    99          0.01      False        80.91   
+           2010-07-30      1    99          0.01      False        80.91   
+
+                       Fuel\_Price  MarkDown1  MarkDown2  MarkDown3  MarkDown4  \textbackslash{}
+Store Dept Date                                                                 
+1     1    2010-02-12       2.548        NaN        NaN        NaN        NaN   
+           2010-02-19       2.548        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.667        NaN        NaN        NaN        NaN   
+      2    2010-02-19       2.514        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.667        NaN        NaN        NaN        NaN   
+           2010-03-19       2.720        NaN        NaN        NaN        NaN   
+      3    2010-02-12       2.548        NaN        NaN        NaN        NaN   
+           2010-02-19       2.548        NaN        NaN        NaN        NaN   
+           2010-02-26       2.548        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.667        NaN        NaN        NaN        NaN   
+      4    2010-02-05       2.572        NaN        NaN        NaN        NaN   
+           2010-02-12       2.572        NaN        NaN        NaN        NaN   
+           2010-02-19       2.514        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+      5    2010-02-05       2.572        NaN        NaN        NaN        NaN   
+           2010-02-12       2.548        NaN        NaN        NaN        NaN   
+           2010-02-19       2.514        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+      6    2010-02-12       2.548        NaN        NaN        NaN        NaN   
+           2010-02-19       2.514        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.625        NaN        NaN        NaN        NaN   
+{\ldots}                           {\ldots}        {\ldots}        {\ldots}        {\ldots}        {\ldots}   
+      94   2010-02-05       2.572        NaN        NaN        NaN        NaN   
+           2010-02-12       2.572        NaN        NaN        NaN        NaN   
+           2010-02-19       2.572        NaN        NaN        NaN        NaN   
+           2010-02-26       2.572        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+      95   2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.667        NaN        NaN        NaN        NaN   
+           2010-03-19       2.720        NaN        NaN        NaN        NaN   
+           2010-03-26       2.732        NaN        NaN        NaN        NaN   
+           2010-04-02       2.732        NaN        NaN        NaN        NaN   
+      96   2010-07-09       2.642        NaN        NaN        NaN        NaN   
+           2010-07-16       2.642        NaN        NaN        NaN        NaN   
+           2010-07-23       2.608        NaN        NaN        NaN        NaN   
+           2010-07-30       2.640        NaN        NaN        NaN        NaN   
+           2010-08-06       2.640        NaN        NaN        NaN        NaN   
+      97   2010-02-05       2.572        NaN        NaN        NaN        NaN   
+           2010-02-12       2.572        NaN        NaN        NaN        NaN   
+           2010-02-19       2.572        NaN        NaN        NaN        NaN   
+           2010-02-26       2.572        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+      98   2010-02-12       2.548        NaN        NaN        NaN        NaN   
+           2010-02-19       2.514        NaN        NaN        NaN        NaN   
+           2010-02-26       2.561        NaN        NaN        NaN        NaN   
+           2010-03-05       2.625        NaN        NaN        NaN        NaN   
+           2010-03-12       2.667        NaN        NaN        NaN        NaN   
+      99   2010-07-02       2.669        NaN        NaN        NaN        NaN   
+           2010-07-09       2.669        NaN        NaN        NaN        NaN   
+           2010-07-16       2.669        NaN        NaN        NaN        NaN   
+           2010-07-23       2.669        NaN        NaN        NaN        NaN   
+           2010-07-30       2.669        NaN        NaN        NaN        NaN   
+
+                       MarkDown5         CPI  Unemployment Type    Size  
+Store Dept Date                                                          
+1     1    2010-02-12        NaN  211.242170         8.106    A  151315  
+           2010-02-19        NaN  211.242170         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.380643         8.106    A  151315  
+      2    2010-02-19        NaN  211.289143         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.380643         8.106    A  151315  
+           2010-03-19        NaN  211.215635         8.106    A  151315  
+      3    2010-02-12        NaN  211.242170         8.106    A  151315  
+           2010-02-19        NaN  211.242170         8.106    A  151315  
+           2010-02-26        NaN  211.242170         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.380643         8.106    A  151315  
+      4    2010-02-05        NaN  211.096358         8.106    A  151315  
+           2010-02-12        NaN  211.096358         8.106    A  151315  
+           2010-02-19        NaN  211.289143         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+      5    2010-02-05        NaN  211.096358         8.106    A  151315  
+           2010-02-12        NaN  211.242170         8.106    A  151315  
+           2010-02-19        NaN  211.289143         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+      6    2010-02-12        NaN  211.242170         8.106    A  151315  
+           2010-02-19        NaN  211.289143         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.350143         8.106    A  151315  
+{\ldots}                          {\ldots}         {\ldots}           {\ldots}  {\ldots}     {\ldots}  
+      94   2010-02-05        NaN  211.096358         8.106    A  151315  
+           2010-02-12        NaN  211.096358         8.106    A  151315  
+           2010-02-19        NaN  211.096358         8.106    A  151315  
+           2010-02-26        NaN  211.096358         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+      95   2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.380643         8.106    A  151315  
+           2010-03-19        NaN  211.215635         8.106    A  151315  
+           2010-03-26        NaN  211.018042         8.106    A  151315  
+           2010-04-02        NaN  211.018042         8.106    A  151315  
+      96   2010-07-09        NaN  211.108414         7.787    A  151315  
+           2010-07-16        NaN  211.108414         7.787    A  151315  
+           2010-07-23        NaN  211.235144         7.787    A  151315  
+           2010-07-30        NaN  211.369903         7.787    A  151315  
+           2010-08-06        NaN  211.369903         7.787    A  151315  
+      97   2010-02-05        NaN  211.096358         8.106    A  151315  
+           2010-02-12        NaN  211.096358         8.106    A  151315  
+           2010-02-19        NaN  211.096358         8.106    A  151315  
+           2010-02-26        NaN  211.096358         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+      98   2010-02-12        NaN  211.242170         8.106    A  151315  
+           2010-02-19        NaN  211.289143         8.106    A  151315  
+           2010-02-26        NaN  211.319643         8.106    A  151315  
+           2010-03-05        NaN  211.350143         8.106    A  151315  
+           2010-03-12        NaN  211.380643         8.106    A  151315  
+      99   2010-07-02        NaN  211.223533         7.787    A  151315  
+           2010-07-09        NaN  211.223533         7.787    A  151315  
+           2010-07-16        NaN  211.223533         7.787    A  151315  
+           2010-07-23        NaN  211.223533         7.787    A  151315  
+           2010-07-30        NaN  211.223533         7.787    A  151315  
+
+[385 rows x 15 columns]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}400}]:} \PY{n}{store1\PYZus{}dept1}\PY{o}{=}\PY{n}{train}\PY{p}{[}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Store}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Dept}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+          \PY{n}{store1\PYZus{}dept1}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{}store1\PYZus{}dept1\PYZus{}up=store1\PYZus{}dept1.apply(lambda x: x.set\PYZus{}index(\PYZsq{}Date\PYZsq{}).resample(\PYZsq{}W\PYZhy{}FRI\PYZsq{},fill\PYZus{}method=\PYZsq{}ffill\PYZsq{}))}
+          
+          \PY{n}{store1\PYZus{}dept1}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{store1\PYZus{}dept1}\PY{o}{=}\PY{n}{store1\PYZus{}dept1}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{W\PYZhy{}FRI}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{fill\PYZus{}method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ffill}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{=}\PY{n}{store1\PYZus{}dept1\PYZus{}up}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weekly\PYZus{}Sales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+            Weekly\_Sales
+Date                    
+2010-02-12      46039.49
+2010-02-19      46039.49
+2010-02-26      19403.54
+2010-03-05      21827.90
+2010-03-12      21043.39
+2012-09-28 00:00:00
+2010-02-12 00:00:00
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}400}]:} [<matplotlib.lines.Line2D at 0x2471ea112b0>]
+\end{Verbatim}
+            
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x2471e945358>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Following observations can be made about the time series of Weekly and
+Monthly sales data: - The time series is seasonal - There is no trend
+observed
+
+    \subsubsection{Moving average}\label{moving-average}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}402}]:} \PY{c+c1}{\PYZsh{} Moving average}
+          
+          \PY{n}{moving\PYZus{}avg} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{rolling\PYZus{}mean}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{moving\PYZus{}avg}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}402}]:} [<matplotlib.lines.Line2D at 0x2471eb4c978>]
+\end{Verbatim}
+            
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x2471e9cf550>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Moving Average
+difference}\label{moving-average-difference}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Moving average difference}
+        \PY{n}{ts\PYZus{}log\PYZus{}moving\PYZus{}avg\PYZus{}diff} \PY{o}{=} \PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales} \PY{o}{\PYZhy{}} \PY{n}{moving\PYZus{}avg}
+\end{Verbatim}
+
+
+    \subsubsection{Testing Stationarity}\label{testing-stationarity}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}431}]:} \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{stattools} \PY{k}{import} \PY{n}{adfuller}
+          \PY{k}{def} \PY{n+nf}{test\PYZus{}stationarity}\PY{p}{(}\PY{n}{timeseries}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{}Determing rolling statistics}
+              \PY{n}{rolmean} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{rolling\PYZus{}mean}\PY{p}{(}\PY{n}{timeseries}\PY{p}{,} \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{12}\PY{p}{)}
+              \PY{n}{rolstd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{rolling\PYZus{}std}\PY{p}{(}\PY{n}{timeseries}\PY{p}{,} \PY{n}{window}\PY{o}{=}\PY{l+m+mi}{12}\PY{p}{)}
+          
+              \PY{c+c1}{\PYZsh{}Plot rolling statistics:}
+              \PY{n}{orig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{timeseries}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{mean} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rolmean}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rolling Mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{std} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rolstd}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rolling Std}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Rolling Mean \PYZam{} Standard Deviation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{n}{block}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+              
+              \PY{c+c1}{\PYZsh{}Perform Dickey\PYZhy{}Fuller test:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Results of Dickey\PYZhy{}Fuller Test:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{dftest} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{timeseries}\PY{p}{,}\PY{n}{autolag} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{dfoutput} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{dftest}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Test Statistic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}Lags Used}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of Observations Used}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+              \PY{k}{for} \PY{n}{key}\PY{p}{,}\PY{n}{value} \PY{o+ow}{in} \PY{n}{dftest}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{dfoutput}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Value (}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{k}{key}] = round(value)
+              \PY{n+nb}{print}\PY{p}{(}\PY{n}{dfoutput}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}432}]:} \PY{n}{ts\PYZus{}log\PYZus{}moving\PYZus{}avg\PYZus{}diff}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          
+          \PY{n}{test\PYZus{}stationarity}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}moving\PYZus{}avg\PYZus{}diff}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Results of Dickey-Fuller Test:
+Test Statistic                -6.641989e+00
+p-value                        5.381055e-09
+\#Lags Used                     1.000000e+00
+Number of Observations Used    1.250000e+02
+Critical Value (1\%)           -3.000000e+00
+Critical Value (5\%)           -3.000000e+00
+Critical Value (10\%)          -3.000000e+00
+dtype: float64
+
+    \end{Verbatim}
+
+    \subsubsection{Exponentially weighted
+average}\label{exponentially-weighted-average}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}436}]:} \PY{n}{ts\PYZus{}log} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}
+          \PY{n}{expwighted\PYZus{}avg} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{ewma}\PY{p}{(}\PY{n}{ts\PYZus{}log}\PY{p}{,} \PY{n}{halflife}\PY{o}{=}\PY{l+m+mi}{12}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{expwighted\PYZus{}avg}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}436}]:} [<matplotlib.lines.Line2D at 0x2472586fa20>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_31_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}438}]:} \PY{n}{ts\PYZus{}log\PYZus{}ewma\PYZus{}diff} \PY{o}{=} \PY{n}{ts\PYZus{}log} \PY{o}{\PYZhy{}} \PY{n}{expwighted\PYZus{}avg}
+          \PY{n}{test\PYZus{}stationarity}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}ewma\PYZus{}diff}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Results of Dickey-Fuller Test:
+Test Statistic                  -2.762831
+p-value                          0.063782
+\#Lags Used                       7.000000
+Number of Observations Used    130.000000
+Critical Value (1\%)             -3.000000
+Critical Value (5\%)             -3.000000
+Critical Value (10\%)            -3.000000
+dtype: float64
+
+    \end{Verbatim}
+
+    \subsubsection{Differencing}\label{differencing}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}442}]:} \PY{n}{ts\PYZus{}log\PYZus{}diff} \PY{o}{=} \PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales} \PY{o}{\PYZhy{}} \PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{shift}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}442}]:} [<matplotlib.lines.Line2D at 0x247210bbc88>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Estimating \& Eliminating
+Trend}\label{estimating-eliminating-trend}
+
+    \subsubsection{Decomposing}\label{decomposing}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}445}]:} \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{seasonal} \PY{k}{import} \PY{n}{seasonal\PYZus{}decompose}
+          \PY{n}{decomposition} \PY{o}{=} \PY{n}{seasonal\PYZus{}decompose}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}
+          
+          \PY{n}{trend} \PY{o}{=} \PY{n}{decomposition}\PY{o}{.}\PY{n}{trend}
+          \PY{n}{seasonal} \PY{o}{=} \PY{n}{decomposition}\PY{o}{.}\PY{n}{seasonal}
+          \PY{n}{residual} \PY{o}{=} \PY{n}{decomposition}\PY{o}{.}\PY{n}{resid}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{411}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{412}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{trend}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Trend}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{413}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{seasonal}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Seasonality}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{414}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{residual}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Residuals}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{best}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Check stationarity of
+residuals}\label{check-stationarity-of-residuals}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}446}]:} \PY{n}{ts\PYZus{}log\PYZus{}decompose} \PY{o}{=} \PY{n}{residual}
+          \PY{n}{ts\PYZus{}log\PYZus{}decompose}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{test\PYZus{}stationarity}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}decompose}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Results of Dickey-Fuller Test:
+Test Statistic                 -5.521862
+p-value                         0.000002
+\#Lags Used                      0.000000
+Number of Observations Used    85.000000
+Critical Value (1\%)            -4.000000
+Critical Value (5\%)            -3.000000
+Critical Value (10\%)           -3.000000
+dtype: float64
+
+    \end{Verbatim}
+
+    \subsubsection{Forecasting time series}\label{forecasting-time-series}
+
+    \subsubsection{ACF and PACF}\label{acf-and-pacf}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}450}]:} \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{stattools} \PY{k}{import} \PY{n}{acf}\PY{p}{,} \PY{n}{pacf}
+          \PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          
+          \PY{n}{lag\PYZus{}acf} \PY{o}{=} \PY{n}{acf}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{,} \PY{n}{nlags}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+          \PY{n}{lag\PYZus{}pacf} \PY{o}{=} \PY{n}{pacf}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{,} \PY{n}{nlags}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ols}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Plot ACF: }
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)} 
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{lag\PYZus{}acf}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.96}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+m+mf}{1.96}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Autocorrelation Function}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Plot PACF:}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{lag\PYZus{}pacf}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mf}{1.96}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+m+mf}{1.96}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Partial Autocorrelation Function}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    p -- The lag value where the PACF chart crosses the upper confidence
+interval for the first time. If you notice closely, in this case p=1. q
+-- The lag value where the ACF chart crosses the upper confidence
+interval for the first time. If you notice closely, in this case q=1.
+
+    \subsection{ARIMA}\label{arima}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}455}]:} \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{arima\PYZus{}model} \PY{k}{import} \PY{n}{ARIMA}
+          \PY{n}{model} \PY{o}{=} \PY{n}{ARIMA}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}  
+          \PY{n}{results\PYZus{}AR} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{disp}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}  
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{results\PYZus{}AR}\PY{o}{.}\PY{n}{fittedvalues}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{results\PYZus{}AR}\PY{o}{.}\PY{n}{fittedvalues}\PY{o}{\PYZhy{}}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-455-52d3c95e2501> in <module>()
+          4 plt.plot(ts\_log\_diff)
+          5 plt.plot(results\_AR.fittedvalues, color='red')
+    ----> 6 plt.title(sum((results\_AR.fittedvalues-ts\_log\_diff)**2))
+    
+
+        TypeError: unsupported operand type(s) for +: 'Timestamp' and 'Timestamp'
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{MA Model}\label{ma-model}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}454}]:} \PY{n}{model} \PY{o}{=} \PY{n}{ARIMA}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}  
+          \PY{n}{results\PYZus{}MA} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{disp}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}  
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{results\PYZus{}MA}\PY{o}{.}\PY{n}{fittedvalues}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RSS: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{results\PYZus{}MA}\PY{o}{.}\PY{n}{fittedvalues}\PY{o}{\PYZhy{}}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-454-8eeaf33dc51a> in <module>()
+          3 plt.plot(ts\_log\_diff)
+          4 plt.plot(results\_MA.fittedvalues, color='red')
+    ----> 5 plt.title('RSS: \%.4f'\% sum((results\_MA.fittedvalues-ts\_log\_diff)**2))
+    
+
+        TypeError: unsupported operand type(s) for +: 'Timestamp' and 'Timestamp'
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Combined model}\label{combined-model}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}456}]:} \PY{n}{model} \PY{o}{=} \PY{n}{ARIMA}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{,} \PY{n}{order}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}  
+          \PY{n}{results\PYZus{}ARIMA} \PY{o}{=} \PY{n}{model}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{disp}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}  
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{results\PYZus{}ARIMA}\PY{o}{.}\PY{n}{fittedvalues}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RSS: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{results\PYZus{}ARIMA}\PY{o}{.}\PY{n}{fittedvalues}\PY{o}{\PYZhy{}}\PY{n}{ts\PYZus{}log\PYZus{}diff}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-456-9f31f67e2165> in <module>()
+          3 plt.plot(ts\_log\_diff)
+          4 plt.plot(results\_ARIMA.fittedvalues, color='red')
+    ----> 5 plt.title('RSS: \%.4f'\% sum((results\_ARIMA.fittedvalues-ts\_log\_diff)**2))
+    
+
+        TypeError: unsupported operand type(s) for +: 'Timestamp' and 'Timestamp'
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_49_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}466}]:} \PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{results\PYZus{}ARIMA}\PY{o}{.}\PY{n}{fittedvalues}\PY{p}{,} \PY{n}{copy}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff\PYZus{}cumsum} \PY{o}{=} \PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff\PYZus{}cumsum}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{predictions\PYZus{}ARIMA\PYZus{}log} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{ix}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+          \PY{n}{predictions\PYZus{}ARIMA\PYZus{}log} \PY{o}{=} \PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}diff\PYZus{}cumsum}\PY{p}{,}\PY{n}{fill\PYZus{}value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+          
+          \PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{predictions\PYZus{}ARIMA} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RMSE: }\PY{l+s+si}{\PYZpc{}.4f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{predictions\PYZus{}ARIMA\PYZus{}log}\PY{o}{\PYZhy{}}\PY{n}{store1\PYZus{}dept1\PYZus{}up\PYZus{}week\PYZus{}sales}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{ts}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Date
+2010-02-19     -17.380384
+2010-02-26     -16.976275
+2010-03-05    -793.997779
+2010-03-12    6368.553347
+2010-03-19    4820.491250
+Freq: W-FRI, dtype: float64
+Date
+2010-02-19      -17.380384
+2010-02-26      -34.356659
+2010-03-05     -828.354438
+2010-03-12     5540.198909
+2010-03-19    10360.690160
+Freq: W-FRI, dtype: float64
+Date
+2010-02-19      -17.380384
+2010-02-26      -34.356659
+2010-03-05     -828.354438
+2010-03-12     5540.198909
+2010-03-19    10360.690160
+Freq: W-FRI, dtype: float64
+            Weekly\_Sales
+Date                    
+2010-02-12      46039.49
+2010-02-19      46039.49
+2010-02-26      19403.54
+2010-03-05      21827.90
+2010-03-12      21043.39
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-466-c785f5e1efd6> in <module>()
+         16 plt.plot(store1\_dept1\_up\_week\_sales)
+         17 plt.plot(predictions\_ARIMA\_log)
+    ---> 18 plt.title('RMSE: \%.4f'\% np.sqrt(sum((predictions\_ARIMA\_log-store1\_dept1\_up\_week\_sales)**2)/len(ts)))
+         19 
+    
+
+        TypeError: unsupported operand type(s) for +: 'Timestamp' and 'Timestamp'
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_50_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Consulted} \PY{n}{References}\PY{p}{:}
+            \PY{n}{Time} \PY{n}{series} \PY{n}{analysis}
+            \PY{n}{https}\PY{p}{:}\PY{o}{/}\PY{o}{/}\PY{n}{www}\PY{o}{.}\PY{n}{youtube}\PY{o}{.}\PY{n}{com}\PY{o}{/}\PY{n}{watch}\PY{err}{?}\PY{n}{v}\PY{o}{=}\PY{n}{Prpu\PYZus{}U5tKkE}\PY{o}{\PYZam{}}\PY{n}{t}\PY{o}{=}\PY{l+m+mi}{406}\PY{n}{s}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
